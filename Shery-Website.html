@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Shey's Shop - Premium Fashion & Lifestyle</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<!-- Tailwind CSS CDN -->
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<!-- Anime.js CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+</head>
+<body>
+
+<div style="display: flex; align-items: center; justify-content: space-between;">
+  <marquee behavior="scroll" direction="left" scrollamount="3" style="background-color: transparent; color: #333; padding: 10px; font-size: 16px; font-weight: bold; width: 80%;">
+    Your destination for premium fashion and lifestyle products.
+  </marquee>
+  <span id="marquee-clock" style="font-size: 16px; font-weight: bold; color: #333; font-family: 'Georgia', serif;"></span>
+</div>
+
+<header>
+  <div class="header-top">
+    <img src="assets/profile_sherry.jpg" alt="Profile Picture" class="profile-img"> 
+    <h1>Shey's Shop</h1>
+    <div class="auth-buttons">
+      <button id="signupBtn"><i class="fas fa-user-plus"></i> Sign Up</button>
+      <button id="loginBtn"><i class="fas fa-user"></i> Login</button>
+      <button id="logoutBtn" style="display: none;"><i class="fas fa-sign-out-alt"></i> Log out</button>
+    </div>
+  </div>
+  
+  <nav class="main-nav">
+    <ul>
+      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-clocks">
+      <span id="clock-manila"></span>
+    </div>
+  </nav>
+</header>
+
+<!-- Login Modal -->
+<div id="loginModal" class="modal">
+  <div class="modal-content">
+    <span class="close" id="closeLogin">&times;</span>
+    <h2><i class="fas fa-user"></i> Login</h2>
+    <form id="loginForm">
+      <input type="email" placeholder="Email" required>
+      <input type="password" placeholder="Password" required>
+      <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account? <a href="#" id="showSignup">Sign up</a></p>
+  </div>
+</div>
+
+<!-- Signup Modal -->
+<div id="signupModal" class="modal">
+  <div class="modal-content">
+    <span class="close" id="closeSignup">&times;</span>
+    <h2><i class="fas fa-user-plus"></i> Sign Up</h2>
+    <form id="signupForm">
+      <input type="text" placeholder="Full Name" required>
+      <input type="email" placeholder="Email" required>
+      <input type="password" placeholder="Password" required>
+      <input type="password" placeholder="Confirm Password" required>
+      <button type="submit">Sign Up</button>
+    </form>
+    <p>Already have an account? <a href="#" id="showLogin">Login</a></p>
+  </div>
+</div>
+
+<!-- Log out Modal -->
+<div id="logoutModal" class="modal">
+  <div class="modal-content">
+    <span class="close" id="closelogout">&times;</span>
+    <h2><i class="fas fa-question-circle"></i> Are You sure to Log Out?</h2>
+    <div class="modal-buttons">
+      <button id="confirmLogout">Yes, Log out</button>
+      <button id="cancelLogout">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<section class="hero" id="home">
+  <div class="hero-content">
+    <h2>Discover Our Latest Collection</h2>
+    <p>Minimalist, high quality & affordable fashion for the modern lifestyle</p>
+    <p class="hero-tagline">Your destination for premium fashion and lifestyle products.</p>
+    <div class="hero-buttons">
+      <button id="viewCollectionBtn" class="cta-btn secondary bg-purple-500 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-purple-600 transition">
+        View Collection
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="categories-section">
+  <div class="container">
+    <h2>Shop by Category</h2>
+    <div class="categories">
+      <div class="category">
+        <i class="fas fa-tshirt"></i>
+        <h3>Clothing</h3>
+        <p>Trendy fashion items</p>
+      </div>
+      <div class="category">
+        <i class="fas fa-gem"></i>
+        <h3>Accessories</h3>
+        <p>Elegant jewelry & more</p>
+      </div>
+      <div class="category">
+        <i class="fas fa-shoe-prints"></i>
+        <h3>Footwear</h3>
+        <p>Comfortable & stylish</p>
+      </div>
+      <div class="category">
+        <i class="fas fa-shopping-bag"></i>
+        <h3>Bags</h3>
+        <p>Functional & fashionable</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Products Section -->
+<section class="products-section" id="products">
+  <div class="container">
+    <div class="section-header">
+      <h2>Featured Products</h2>
+      <p>Handpicked beauty items just for you</p>
+    </div>
+    <div class="products">
+      <div class="product" data-id="1" onclick="showProductModal(1)">
+        <img src="assets/prod1.jpg" alt="AVON Simply Pretty Shine No More Pressed Powder" />
+        <div class="product-info">
+          <h3>AVON Simply Pretty Shine No More Pressed Powder</h3>
+          <p class="product-description">A lightweight pressed powder that controls shine for up to 12 hours, with SPF 14 and instant brightness. Available in 4 natural shades. Perfect for everyday use and touch-ups.</p>
+        </div>
+      </div>
+      <div class="product" data-id="2" onclick="showProductModal(2)">
+        <img src="assets/prod2.jpg" alt="Butterfly Eyeshadow Palette" />
+        <div class="product-info">
+          <h3>Butterfly Eyeshadow Palette</h3>
+          <p class="product-description">A stunning palette with shimmer and matte shades for a sparkling, dreamy eye look. Housed in a beautiful butterfly case, perfect for gifting or your own collection.</p>
+        </div>
+      </div>
+      <div class="product" data-id="3" onclick="showProductModal(3)">
+        <img src="assets/prod3.jpg" alt="USLIKE Flower Lip Balm" />
+        <div class="product-info">
+          <h3>USLIKE Flower Lip Balm</h3>
+          <p class="product-description">Moisturizing lip balm in adorable floral packaging. Leaves lips soft, hydrated, and glossy with a hint of color. Great for daily use and as a cute gift.</p>
+        </div>
+      </div>
+      <div class="product" data-id="4" onclick="showProductModal(4)">
+        <img src="assets/prod4.jpg" alt="USLIKE Color Lipstick" />
+        <div class="product-info">
+          <h3>USLIKE Color Lipstick</h3>
+          <p class="product-description">Rich, creamy lipstick with smooth application and vibrant color payoff. Comes in a cute, pastel tube. Perfect for all-day wear.</p>
+        </div>
+      </div>
+      <div class="product" data-id="5" onclick="showProductModal(5)">
+        <img src="assets/prod5.jpg" alt="USLIKE Lipstick Set" />
+        <div class="product-info">
+          <h3>USLIKE Lipstick Set</h3>
+          <p class="product-description">A set of 8 creamy, glossy lipsticks in a range of flattering shades. Perfect for experimenting with new looks or sharing with friends.</p>
+        </div>
+      </div>
+      <div class="product" data-id="6" onclick="showProductModal(6)">
+        <img src="assets/prod6.jpg" alt="KEKEMOOD Lipstick" />
+        <div class="product-info">
+          <h3>KEKEMOOD Lipstick</h3>
+          <p class="product-description">Elegant, long-lasting lipstick with a creamy texture and high-shine finish. Comes in a chic, modern case. A must-have for your makeup bag.</p>
+        </div>
+      </div>
+      <div class="product" data-id="7" onclick="showProductModal(7)">
+        <img src="assets/prod7.jpg" alt="KEKEMOOD Lipstick Swatches" />
+        <div class="product-info">
+          <h3>KEKEMOOD Lipstick Swatches</h3>
+          <p class="product-description">See the beautiful color payoff and glossy finish on lips and skin. Perfect for finding your new favorite shade.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Product Modal (hidden by default) -->
+<div id="productModal" class="modal">
+  <div class="modal-content product-modal-content">
+    <span class="close" id="closeProductModal">&times;</span>
+    <img id="modalProductImg" src="" alt="Product Image" class="modal-product-img" />
+    <h3 id="modalProductName"></h3>
+    <p id="modalProductDesc"></p>
+  </div>
+</div>
+
+<section class="newsletter-section">
+  <div class="container">
+    <div class="newsletter-content">
+      <h2>Stay Updated</h2>
+      <p>Subscribe to our newsletter for exclusive offers and latest updates</p>
+      <form class="newsletter-form">
+        <input type="email" placeholder="Enter your email" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="contact-form-section" id="contact">
+  ...
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Shey's Shop</h3>
+        <p>Your destination for premium fashion and lifestyle products.</p>
+        <div class="social-links">
+          <a href="https://web.facebook.com/Sheryhanne143"><i class="fab fa-facebook"></i></a>
+          <a href="https://www.instagram.com/sheryhannie/"><i class="fab fa-instagram"></i></a>
+          </div>
+      </div>
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Contact Info</h4>
+        <p><i class="fas fa-phone"></i> +63 912 456 7890</p>
+        <p><i class="fas fa-envelope"></i> sherryhanne@gmail.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Shey's Shop. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Authentication state management
+  let isLoggedIn = false;
+  const signupBtn = document.getElementById('signupBtn');
+  const loginBtn = document.getElementById('loginBtn');
+  const logoutBtn = document.getElementById('logoutBtn');
+
+  // Check if user is already logged in
+  function checkAuthStatus() {
+    const user = localStorage.getItem('currentUser');
+    if (user) {
+      isLoggedIn = true;
+      updateAuthButtons();
+    }
+  }
+
+  // Update button visibility based on auth status
+  function updateAuthButtons() {
+    if (isLoggedIn) {
+      signupBtn.style.display = 'none';
+      loginBtn.style.display = 'none';
+      logoutBtn.style.display = 'inline-block';
+    } else {
+      signupBtn.style.display = 'inline-block';
+      loginBtn.style.display = 'inline-block';
+      logoutBtn.style.display = 'none';
+    }
+  }
+
+  // Sign up button functionality
+  signupBtn.addEventListener('click', () => {
+    window.location.href = 'signup.html';
+  });
+
+  // Modal functionality
+  const logoutBtnElement = document.getElementById('logoutBtn');
+  const loginModal = document.getElementById('loginModal');
+  const signupModal = document.getElementById('signupModal');
+  const logoutModal = document.getElementById('logoutModal');
+  const closeLogin = document.getElementById('closeLogin');
+  const closeSignup = document.getElementById('closeSignup');
+  const closelogout = document.getElementById('closelogout');
+  const confirmLogout = document.getElementById('confirmLogout');
+  const cancelLogout = document.getElementById('cancelLogout');
+  const showSignup = document.getElementById('showSignup');
+  const showLogin = document.getElementById('showLogin');
+
+  // Login modal
+  loginBtn.onclick = () => { loginModal.style.display = 'block'; }
+  closeLogin.onclick = () => { loginModal.style.display = 'none'; }
+  showSignup.onclick = (e) => { 
+    e.preventDefault();
+    loginModal.style.display = 'none';
+    signupModal.style.display = 'block';
+  }
+
+  // Signup modal
+  closeSignup.onclick = () => { signupModal.style.display = 'none'; }
+  showLogin.onclick = (e) => { 
+    e.preventDefault();
+    signupModal.style.display = 'none';
+    loginModal.style.display = 'block';
+  }
+
+  // Logout modal
+  logoutBtnElement.onclick = () => { logoutModal.style.display = 'block'; }
+  closelogout.onclick = () => { logoutModal.style.display = 'none'; }
+  confirmLogout.onclick = () => { 
+    logoutModal.style.display = 'none';
+    isLoggedIn = false;
+    localStorage.removeItem('currentUser');
+    updateAuthButtons();
+    showNotification('Successfully logged out!');
+  }
+  cancelLogout.onclick = () => { logoutModal.style.display = 'none'; }
+
+  // Login form submission
+  document.getElementById('loginForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = e.target.querySelector('input[type="email"]').value;
+    const password = e.target.querySelector('input[type="password"]').value;
+    
+    // Simple validation - in real app, you'd check against a database
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    const user = users.find(u => u.email === email && u.password === password);
+    
+    if (user) {
+      isLoggedIn = true;
+      localStorage.setItem('currentUser', JSON.stringify(user));
+      updateAuthButtons();
+      loginModal.style.display = 'none';
+      e.target.reset();
+      showNotification('Successfully logged in!');
+    } else {
+      alert('Invalid email or password. Please try again.');
+    }
+  });
+
+  // Close modals when clicking outside
+  window.onclick = (event) => {
+    if (event.target == loginModal) {
+      loginModal.style.display = 'none';
+    }
+    if (event.target == signupModal) {
+      signupModal.style.display = 'none';
+    }
+    if (event.target == logoutModal) {
+      logoutModal.style.display = 'none';
+    }
+  }
+
+  // Check auth status on page load
+  checkAuthStatus();
+  updateAuthButtons();
+
+  // Add to cart functionality
+  const buyBtns = document.querySelectorAll('.buy-btn');
+  const cartCount = document.querySelector('.cart-count');
+  let cartItems = 0;
+
+  buyBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      cartItems++;
+      cartCount.textContent = cartItems;
+      btn.innerHTML = '<i class="fas fa-check"></i> Added';
+      btn.style.backgroundColor = '#10B981';
+      setTimeout(() => {
+        btn.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
+        btn.style.backgroundColor = '#333';
+      }, 2000);
+    });
+  });
+
+  // Wishlist functionality
+  const wishlistBtns = document.querySelectorAll('.wishlist-btn');
+  wishlistBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const icon = btn.querySelector('i');
+      if (icon.classList.contains('far')) {
+        icon.classList.remove('far');
+        icon.classList.add('fas');
+        icon.style.color = '#EF4444';
+      } else {
+        icon.classList.remove('fas');
+        icon.classList.add('far');
+        icon.style.color = '#333';
+      }
+    });
+  });
+
+  // Newsletter form
+  const newsletterForm = document.querySelector('.newsletter-form');
+  newsletterForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = newsletterForm.querySelector('input[type="email"]').value;
+    alert(`Thank you for subscribing with: ${email}`);
+    newsletterForm.reset();
+  });
+
+  // Smooth scroll for navigation
+  function smoothScrollTo(selector) {
+    const el = document.querySelector(selector);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const href = this.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+        smoothScrollTo(href);
+        // Animate section if it's products or contact
+        if (href === '#products' || href === '#contact') {
+          setTimeout(() => {
+            const section = document.querySelector(href);
+            if (section) {
+              section.classList.remove('section-animate');
+              setTimeout(() => section.classList.add('section-animate'), 100);
+            }
+          }, 500);
+        }
+      }
+    });
+  });
+
+  document.getElementById('viewCollectionBtn').onclick = function(e) {
+    e.preventDefault();
+    const productsSection = document.getElementById('products');
+    if (productsSection) {
+      productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      anime({
+        targets: productsSection,
+        opacity: [0, 1],
+        translateY: [40, 0],
+        duration: 900,
+        easing: 'easeOutExpo'
+      });
+    }
+    anime({
+      targets: '#viewCollectionBtn',
+      scale: [1, 1.12, 1],
+      duration: 400,
+      easing: 'easeInOutQuad'
+    });
+  };
+
+  // Animate sections on scroll
+  function animateSections() {
+    document.querySelectorAll('section').forEach(section => {
+      const rect = section.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 100 && !section.classList.contains('animated')) {
+        anime({
+          targets: section,
+          opacity: [0, 1],
+          translateY: [40, 0],
+          duration: 900,
+          easing: 'easeOutExpo'
+        });
+        section.classList.add('animated');
+      }
+    });
+  }
+  window.addEventListener('scroll', animateSections);
+  animateSections();
+
+  // Product data for modal
+  const products = [
+    {
+      id: 1,
+      name: 'AVON Simply Pretty Shine No More Pressed Powder',
+      img: 'assets/prod1.jpg',
+      desc: 'A lightweight pressed powder that controls shine for up to 12 hours, with SPF 14 and instant brightness. Available in 4 natural shades. Perfect for everyday use and touch-ups.'
+    },
+    {
+      id: 2,
+      name: 'Butterfly Eyeshadow Palette',
+      img: 'assets/prod2.jpg',
+      desc: 'A stunning palette with shimmer and matte shades for a sparkling, dreamy eye look. Housed in a beautiful butterfly case, perfect for gifting or your own collection.'
+    },
+    {
+      id: 3,
+      name: 'USLIKE Flower Lip Balm',
+      img: 'assets/prod3.jpg',
+      desc: 'Moisturizing lip balm in adorable floral packaging. Leaves lips soft, hydrated, and glossy with a hint of color. Great for daily use and as a cute gift.'
+    },
+    {
+      id: 4,
+      name: 'USLIKE Color Lipstick',
+      img: 'assets/prod4.jpg',
+      desc: 'Rich, creamy lipstick with smooth application and vibrant color payoff. Comes in a cute, pastel tube. Perfect for all-day wear.'
+    },
+    {
+      id: 5,
+      name: 'USLIKE Lipstick Set',
+      img: 'assets/prod5.jpg',
+      desc: 'A set of 8 creamy, glossy lipsticks in a range of flattering shades. Perfect for experimenting with new looks or sharing with friends.'
+    },
+    {
+      id: 6,
+      name: 'KEKEMOOD Lipstick',
+      img: 'assets/prod6.jpg',
+      desc: 'Elegant, long-lasting lipstick with a creamy texture and high-shine finish. Comes in a chic, modern case. A must-have for your makeup bag.'
+    },
+    {
+      id: 7,
+      name: 'KEKEMOOD Lipstick Swatches',
+      img: 'assets/prod7.jpg',
+      desc: 'See the beautiful color payoff and glossy finish on lips and skin. Perfect for finding your new favorite shade.'
+    }
+  ];
+
+  // Modal logic
+  function showProductModal(id) {
+    const product = products.find(p => p.id === id);
+    if (!product) return;
+    document.getElementById('modalProductImg').src = product.img;
+    document.getElementById('modalProductName').textContent = product.name;
+    document.getElementById('modalProductDesc').textContent = product.desc;
+    document.getElementById('productModal').style.display = 'block';
+  }
+  document.getElementById('closeProductModal').onclick = function() {
+    document.getElementById('productModal').style.display = 'none';
+  };
+  window.onclick = function(event) {
+    if (event.target == document.getElementById('productModal')) {
+      document.getElementById('productModal').style.display = 'none';
+    }
+  };
+
+  // Cart logic
+  function addToCart(product, checkoutNow) {
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    const existing = cart.find(item => item.id === product.id);
+    if (existing) {
+      existing.qty += 1;
+    } else {
+      cart.push({ ...product, qty: 1 });
+    }
+    localStorage.setItem('cart', JSON.stringify(cart));
+    document.getElementById('productModal').style.display = 'none';
+    if (checkoutNow) {
+      window.location.href = 'checkout.html';
+    } else {
+      alert('Added to cart!');
+    }
+  }
+
+  function updateClocks() {
+    const now = new Date();
+    // Manila (UTC+8)
+    const manila = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Manila' }));
+
+    function format12h(date) {
+      let h = date.getHours();
+      const m = date.getMinutes().toString().padStart(2, '0');
+      const s = date.getSeconds().toString().padStart(2, '0');
+      const ampm = h >= 12 ? 'PM' : 'AM';
+      h = h % 12;
+      h = h ? h : 12;
+      return `${h}:${m}:${s} ${ampm}`;
+    }
+
+    document.getElementById('clock-manila').textContent = `Manila: ${format12h(manila)}`;
+  }
+  setInterval(updateClocks, 1000);
+  updateClocks();
+
+  function updateMarqueeClock() {
+    const now = new Date();
+    const manila = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Manila' }));
+    let h = manila.getHours();
+    const m = manila.getMinutes().toString().padStart(2, '0');
+    const s = manila.getSeconds().toString().padStart(2, '0');
+    const ampm = h >= 12 ? 'PM' : 'AM';
+    h = h % 12;
+    h = h ? h : 12;
+    document.getElementById('marquee-clock').textContent = `Manila: ${h}:${m}:${s} ${ampm}`;
+  }
+  setInterval(updateMarqueeClock, 1000);
+  updateMarqueeClock();
+});
+</script>
+
+<style>
+@keyframes popIn {
+  0% { transform: scale(0.8); opacity: 0; }
+  80% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); }
+}
+.product.pop-animate {
+  animation: popIn 0.5s cubic-bezier(.68,-0.55,.27,1.55) both;
+}
+.nav-clocks {
+  float: right;
+  font-size: 0.95em;
+  color: #fff;
+  margin-top: 10px;
+  margin-right: 30px;
+  letter-spacing: 0.5px;
+  font-family: 'Georgia', serif;
+}
+@media (max-width: 900px) {
+  .nav-clocks { font-size: 0.8em; margin-right: 10px; }
+}
+@media (max-width: 600px) {
+  .nav-clocks { display: block; float: none; margin: 10px 0 0 0; text-align: center; }
+}
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+section.section-animate {
+  animation: fadeInUp 0.8s cubic-bezier(.68,-0.55,.27,1.55) both;
+}
+</style>
+</body>
+</html>
