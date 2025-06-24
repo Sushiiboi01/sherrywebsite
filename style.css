@@ -1074,7 +1074,7 @@ input[type="email"], input[type="password"], input[type="text"] {
   border-left: 4px solid #c073b1;
 }
 
-/* Enhanced tile colors for different sections */
+
 .mission-tile .tile-icon {
   background: linear-gradient(135deg, #c073b1, #a855f7);
 }
@@ -1107,7 +1107,7 @@ input[type="email"], input[type="password"], input[type="text"] {
   background: linear-gradient(135deg, #84CC16, #65A30D);
 }
 
-/* Responsive design for story section */
+
 @media (max-width: 768px) {
   .story-content h2 {
     font-size: 2em;
@@ -1141,7 +1141,7 @@ input[type="email"], input[type="password"], input[type="text"] {
   }
 }
 
-/* About Verse Section */
+
 .about-verse-section {
   padding: 40px 0 0 0;
   background: none;
@@ -1194,7 +1194,7 @@ input[type="email"], input[type="password"], input[type="text"] {
   }
 }
 
-/* About Verse Header (under main heading) */
+
 .about-verse-header {
   display: flex;
   justify-content: center;
@@ -1252,10 +1252,7 @@ input[type="email"], input[type="password"], input[type="text"] {
   }
 }
 
-/*
- * This styles the main verse text under the About Shey's Shop heading.
- * We use a soft pink (#c073b1) to match the brand's palette and keep it elegant.
- */
+
 .about-verse-plain {
   margin: 18px 0 8px 0;
   font-family: 'Georgia', serif;
@@ -1266,10 +1263,7 @@ input[type="email"], input[type="password"], input[type="text"] {
   letter-spacing: 0.01em;
 }
 
-/*
- * This is for the verse reference (e.g., Psalm 139:14) right after the main verse.
- * Keeping it the same pink for consistency and a gentle, cohesive look.
- */
+
 .about-verse-ref {
   color: #c073b1 !important;
   font-size: 0.95em;
