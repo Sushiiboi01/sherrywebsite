@@ -1266,10 +1266,206 @@ input[type="email"], input[type="password"], input[type="text"] {
   letter-spacing: 0.01em;
 }
 
-
+/*
+ * This is for the verse reference (e.g., Psalm 139:14) right after the main verse.
+ * Keeping it the same pink for consistency and a gentle, cohesive look.
+ */
 .about-verse-ref {
   color: #c073b1 !important;
   font-size: 0.95em;
   font-style: italic;
   margin-left: 8px;
+}
+
+/* Cursor Hearts Effect */
+.cursor-star {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  width: 12px;
+  height: 12px;
+  background: radial-gradient(circle, #fff 0%, #ff6b9d 50%, transparent 100%);
+  border-radius: 50%;
+  animation: heartBeat 1.2s ease-in-out infinite;
+  box-shadow: 0 0 15px #ff6b9d, 0 0 25px #fff, 0 0 35px rgba(255, 107, 157, 0.6);
+  filter: drop-shadow(0 0 10px rgba(255, 107, 157, 0.9));
+  transform-origin: center;
+}
+
+.cursor-star::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  right: -6px;
+  bottom: -6px;
+  background: radial-gradient(circle, rgba(255, 107, 157, 0.5) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: heartPulse 1.8s ease-in-out infinite;
+}
+
+.cursor-star::after {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: -12px;
+  right: -12px;
+  bottom: -12px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: heartGlow 2.4s ease-in-out infinite;
+}
+
+@keyframes heartBeat {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(0.9);
+  }
+  25% {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.3);
+  }
+  75% {
+    opacity: 0.9;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes heartPulse {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.6);
+  }
+}
+
+@keyframes heartGlow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(2);
+  }
+}
+
+/* Different heart colors for variety */
+.cursor-star:nth-child(4n) {
+  background: radial-gradient(circle, #fff 0%, #ff6b9d 50%, transparent 100%);
+  box-shadow: 0 0 15px #ff6b9d, 0 0 25px #fff, 0 0 35px rgba(255, 107, 157, 0.6);
+  filter: drop-shadow(0 0 10px rgba(255, 107, 157, 0.9));
+}
+
+.cursor-star:nth-child(4n)::before {
+  background: radial-gradient(circle, rgba(255, 107, 157, 0.5) 0%, transparent 70%);
+}
+
+.cursor-star:nth-child(4n+1) {
+  background: radial-gradient(circle, #fff 0%, #ff9ecd 50%, transparent 100%);
+  box-shadow: 0 0 15px #ff9ecd, 0 0 25px #fff, 0 0 35px rgba(255, 158, 205, 0.6);
+  filter: drop-shadow(0 0 10px rgba(255, 158, 205, 0.9));
+}
+
+.cursor-star:nth-child(4n+1)::before {
+  background: radial-gradient(circle, rgba(255, 158, 205, 0.5) 0%, transparent 70%);
+}
+
+.cursor-star:nth-child(4n+2) {
+  background: radial-gradient(circle, #fff 0%, #ffb3d9 50%, transparent 100%);
+  box-shadow: 0 0 15px #ffb3d9, 0 0 25px #fff, 0 0 35px rgba(255, 179, 217, 0.6);
+  filter: drop-shadow(0 0 10px rgba(255, 179, 217, 0.9));
+}
+
+.cursor-star:nth-child(4n+2)::before {
+  background: radial-gradient(circle, rgba(255, 179, 217, 0.5) 0%, transparent 70%);
+}
+
+.cursor-star:nth-child(4n+3) {
+  background: radial-gradient(circle, #fff 0%, #ffcce6 50%, transparent 100%);
+  box-shadow: 0 0 15px #ffcce6, 0 0 25px #fff, 0 0 35px rgba(255, 204, 230, 0.6);
+  filter: drop-shadow(0 0 10px rgba(255, 204, 230, 0.9));
+}
+
+.cursor-star:nth-child(4n+3)::before {
+  background: radial-gradient(circle, rgba(255, 204, 230, 0.5) 0%, transparent 70%);
+}
+
+/* Special effects for burst hearts */
+.cursor-star.burst-star {
+  width: 16px;
+  height: 16px;
+  animation: burstHeartBeat 1.5s ease-in-out infinite;
+  box-shadow: 0 0 20px currentColor, 0 0 30px #fff, 0 0 45px rgba(255, 255, 255, 0.7);
+}
+
+.cursor-star.burst-star::before {
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  animation: burstHeartPulse 2s ease-in-out infinite;
+}
+
+.cursor-star.burst-star::after {
+  top: -16px;
+  left: -16px;
+  right: -16px;
+  bottom: -16px;
+  animation: burstHeartGlow 3s ease-in-out infinite;
+}
+
+@keyframes burstHeartBeat {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(0.95);
+  }
+  25% {
+    opacity: 0.9;
+    transform: scale(1.15);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.4);
+  }
+  75% {
+    opacity: 0.95;
+    transform: scale(1.25);
+  }
+}
+
+@keyframes burstHeartPulse {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.9);
+  }
+}
+
+@keyframes burstHeartGlow {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(2.5);
+  }
+}
+
+/* Disable cursor hearts on mobile devices */
+@media (max-width: 768px) {
+  .cursor-star {
+    display: none;
+  }
 } 
