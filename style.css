@@ -1257,14 +1257,14 @@ input[type="email"], input[type="password"], input[type="text"] {
   margin: 18px 0 8px 0;
   font-family: 'Georgia', serif;
   font-size: 1.25em;
-  color: #fff;
+  color: #fff !important;
   font-weight: bold;
   text-align: center;
   letter-spacing: 0.01em;
 }
 
 .about-verse-ref {
-  color: #fff;
+  color: #fff !important;
   font-size: 0.95em;
   font-style: italic;
   margin-left: 8px;
