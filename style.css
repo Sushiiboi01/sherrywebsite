@@ -1252,7 +1252,10 @@ input[type="email"], input[type="password"], input[type="text"] {
   }
 }
 
-/* Plain About Verse under About Shey's Shop */
+/*
+ * This styles the main verse text under the About Shey's Shop heading.
+ * We use a soft pink (#c073b1) to match the brand's palette and keep it elegant.
+ */
 .about-verse-plain {
   margin: 18px 0 8px 0;
   font-family: 'Georgia', serif;
@@ -1262,6 +1265,7 @@ input[type="email"], input[type="password"], input[type="text"] {
   text-align: center;
   letter-spacing: 0.01em;
 }
+
 
 .about-verse-ref {
   color: #c073b1 !important;
