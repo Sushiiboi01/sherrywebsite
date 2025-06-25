@@ -142,92 +142,133 @@
 
 <!-- Cursor Hearts Effect JavaScript -->
 <script>
-console.log('CursorHearts loaded');
-class CursorHearts {
+class TrailingHearts {
   constructor() {
     this.hearts = [];
-    this.maxHearts = 30;
+    this.maxHearts = 15;
     this.colors = [
       '#ff6b9d', '#ff9ecd', '#ffb3d9', '#ffcce6',
       '#f87171', '#fbbf24', '#34d399', '#60a5fa', '#a78bfa'
     ];
+    this.lastMouseX = 0;
+    this.lastMouseY = 0;
+    this.mousePositions = [];
+    this.maxPositions = 10;
     this.addListeners();
   }
+
   addListeners() {
-    window.addEventListener('mousemove', (e) => this.createHeart(e));
+    window.addEventListener('mousemove', (e) => this.trackMouse(e));
     window.addEventListener('click', (e) => this.createHeartBurst(e));
   }
-  createHeart(e) {
+
+  trackMouse(e) {
     if (window.innerWidth < 768) return;
+    
+    this.lastMouseX = e.clientX;
+    this.lastMouseY = e.clientY;
+    
+    this.mousePositions.push({ x: e.clientX, y: e.clientY, time: Date.now() });
+    
+    if (this.mousePositions.length > this.maxPositions) {
+      this.mousePositions.shift();
+    }
+    
+    if (Math.random() < 0.3) {
+      this.createTrailingHeart();
+    }
+  }
+
+  createTrailingHeart() {
     if (this.hearts.length >= this.maxHearts) {
       const oldHeart = this.hearts.shift();
       if (oldHeart && oldHeart.parentNode) oldHeart.parentNode.removeChild(oldHeart);
     }
+
     const color = this.colors[Math.floor(Math.random() * this.colors.length)];
     const heart = document.createElement('div');
-    heart.className = 'cursor-star';
-    heart.style.left = e.clientX + 'px';
-    heart.style.top = e.clientY + 'px';
+    heart.className = 'trailing-heart';
+    
+    const delayIndex = Math.max(0, this.mousePositions.length - 3);
+    const position = this.mousePositions[delayIndex] || { x: this.lastMouseX, y: this.lastMouseY };
+    
+    heart.style.left = position.x + 'px';
+    heart.style.top = position.y + 'px';
     heart.style.position = 'fixed';
     heart.style.pointerEvents = 'none';
     heart.style.zIndex = 9999;
-    heart.style.transition = 'opacity 0.5s, transform 0.5s';
-    heart.innerHTML = `<svg viewBox="0 0 32 29" width="18" height="16" style="display:block;">
+    heart.style.opacity = '0.8';
+    heart.style.transition = 'opacity 2s ease-out, transform 3s ease-out';
+    
+    const size = 14 + Math.random() * 8;
+    heart.innerHTML = `<svg viewBox="0 0 32 29" width="${size}" height="${size * 0.9}" style="display:block;">
       <path d="M23.6,2.6c-2.6,0-4.9,1.7-5.6,4.1C16.3,4.3,14,2.6,11.4,2.6C7.3,2.6,4,6,4,10.1c0,7.1,11.2,15.3,11.7,15.7c0.2,0.1,0.5,0.2,0.7,0.2s0.5-0.1,0.7-0.2c0.5-0.4,11.7-8.6,11.7-15.7C28,6,24.7,2.6,23.6,2.6z" fill="${color}"/></svg>`;
-    const offsetX = (Math.random() - 0.5) * 18;
-    const offsetY = (Math.random() - 0.5) * 18;
-    const scale = 0.8 + Math.random() * 0.7;
+    
+    const offsetX = (Math.random() - 0.5) * 20;
+    const offsetY = (Math.random() - 0.5) * 20;
+    const scale = 0.6 + Math.random() * 0.4;
+    
     heart.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
     document.body.appendChild(heart);
     this.hearts.push(heart);
+    
     setTimeout(() => {
       heart.style.opacity = '0';
-      heart.style.transform += ' scale(0.5)';
+      heart.style.transform += ' translateY(-30px) scale(0.3)';
       setTimeout(() => {
         if (heart.parentNode) heart.parentNode.removeChild(heart);
         const idx = this.hearts.indexOf(heart);
         if (idx > -1) this.hearts.splice(idx, 1);
-      }, 500);
-    }, 1200 + Math.random() * 800);
+      }, 2000);
+    }, 1000 + Math.random() * 1000);
   }
+
   createHeartBurst(e) {
     if (window.innerWidth < 768) return;
-    for (let i = 0; i < 14; i++) {
+    
+    for (let i = 0; i < 8; i++) {
       setTimeout(() => {
         const color = this.colors[Math.floor(Math.random() * this.colors.length)];
         const heart = document.createElement('div');
-        heart.className = 'cursor-star burst-star';
+        heart.className = 'burst-heart';
         heart.style.left = e.clientX + 'px';
         heart.style.top = e.clientY + 'px';
         heart.style.position = 'fixed';
         heart.style.pointerEvents = 'none';
         heart.style.zIndex = 9999;
-        heart.style.transition = 'opacity 0.7s, transform 0.7s';
-        heart.innerHTML = `<svg viewBox="0 0 32 29" width="22" height="20" style="display:block;">
+        heart.style.opacity = '0.9';
+        heart.style.transition = 'opacity 2s ease-out, transform 2.5s ease-out';
+        
+        const size = 16 + Math.random() * 6;
+        heart.innerHTML = `<svg viewBox="0 0 32 29" width="${size}" height="${size * 0.9}" style="display:block;">
           <path d="M23.6,2.6c-2.6,0-4.9,1.7-5.6,4.1C16.3,4.3,14,2.6,11.4,2.6C7.3,2.6,4,6,4,10.1c0,7.1,11.2,15.3,11.7,15.7c0.2,0.1,0.5,0.2,0.7,0.2s0.5-0.1,0.7-0.2c0.5-0.4,11.7-8.6,11.7-15.7C28,6,24.7,2.6,23.6,2.6z" fill="${color}"/></svg>`;
-        const angle = (i / 14) * 2 * Math.PI;
-        const distance = 32 + Math.random() * 18;
+        
+        const angle = (i / 8) * 2 * Math.PI;
+        const distance = 25 + Math.random() * 15;
         const offsetX = Math.cos(angle) * distance;
         const offsetY = Math.sin(angle) * distance;
-        const scale = 1 + Math.random() * 0.7;
+        const scale = 0.8 + Math.random() * 0.4;
+        
         heart.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
         document.body.appendChild(heart);
         this.hearts.push(heart);
+        
         setTimeout(() => {
           heart.style.opacity = '0';
-          heart.style.transform += ' scale(0.5)';
+          heart.style.transform += ' translateY(-20px) scale(0.2)';
           setTimeout(() => {
             if (heart.parentNode) heart.parentNode.removeChild(heart);
             const idx = this.hearts.indexOf(heart);
             if (idx > -1) this.hearts.splice(idx, 1);
-          }, 700);
-        }, 1400 + Math.random() * 600);
-      }, i * 18);
+          }, 2000);
+        }, 1500 + Math.random() * 500);
+      }, i * 50);
     }
   }
 }
+
 document.addEventListener('DOMContentLoaded', () => {
-  new CursorHearts();
+  new TrailingHearts();
 });
 </script>
 
